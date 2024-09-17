@@ -29,7 +29,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/StyleShoots/Swift-Kuery.git", branch: "master"),
-        ],
+    ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
@@ -43,7 +43,10 @@ let package = Package(
         ),
         .target(
             name: "SwiftKueryPostgreSQL",
-            dependencies: ["SwiftKuery", "CLibpq"]
+            dependencies: [
+                .product(name: "SwiftKuery", package: "Swift-Kuery"),
+                "CLibpq"
+            ]
         ),
         .testTarget(
             name: "SwiftKueryPostgreSQLTests",
